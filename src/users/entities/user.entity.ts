@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Group } from '../../groups/entities/group.entity';
 
 @Entity()
 export class User {
@@ -13,4 +14,11 @@ export class User {
 
   @Column({nullable: true})
   displayName: string;
+
+ //@OneToMany(() => Group, (group: Group) => group.users)
+ //public groups: Group[];
+
+ @ManyToOne(() => Group, (group: Group) => group.users)
+ public groups: Group[];
 }
+
